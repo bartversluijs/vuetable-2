@@ -1,5 +1,5 @@
 /**
- * vuetable-2 v2.0.0-beta.4
+ * vuetable-2 v2.0.0-beta.5
  * https://github.com/ratiw/vuetable-2
  * Released under the MIT License.
  */
@@ -661,7 +661,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetableFieldMixin.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetableFieldMixin.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -911,13 +911,17 @@ var singletonElement = null
 var singletonCounter = 0
 var isProduction = false
 var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
 
 // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
 // tags it will allow on a page
 var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
 
-module.exports = function (parentId, list, _isProduction) {
+module.exports = function (parentId, list, _isProduction, _options) {
   isProduction = _isProduction
+
+  options = _options || {}
 
   var styles = listToStyles(parentId, list)
   addStylesToDom(styles)
@@ -982,7 +986,7 @@ function createStyleElement () {
 
 function addStyle (obj /* StyleObjectPart */) {
   var update, remove
-  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
 
   if (styleElement) {
     if (isProduction) {
@@ -1064,6 +1068,9 @@ function applyToTag (styleElement, obj) {
   if (media) {
     styleElement.setAttribute('media', media)
   }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
 
   if (sourceMap) {
     // https://developer.chrome.com/devtools/docs/javascript-debugging
@@ -1128,7 +1135,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetablePaginationMixin.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetablePaginationMixin.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -1488,7 +1495,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetableColGutter.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetableColGutter.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VuetableColGutter.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1528,7 +1535,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetableFieldCheckbox.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetableFieldCheckbox.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VuetableFieldCheckbox.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1568,7 +1575,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetableFieldCheckboxMixin.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetableFieldCheckboxMixin.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -1607,7 +1614,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetableFieldHandle.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetableFieldHandle.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VuetableFieldHandle.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1647,7 +1654,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetableFieldSequence.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetableFieldSequence.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VuetableFieldSequence.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -1687,7 +1694,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetablePaginationInfoMixin.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetablePaginationInfoMixin.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -1726,7 +1733,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetableRowHeader.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetableRowHeader.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VuetableRowHeader.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2760,7 +2767,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\Vuetable.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/Vuetable.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Vuetable.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2804,7 +2811,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetablePagination.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetablePagination.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VuetablePagination.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2844,7 +2851,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetablePaginationDropdown.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetablePaginationDropdown.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VuetablePaginationDropdown.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -2888,7 +2895,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetablePaginationInfo.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetablePaginationInfo.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VuetablePaginationInfo.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -3895,6 +3902,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: String,
       default: 'alt'
     },
+    renderTitle: {
+      type: Function,
+      default: null
+    },
     rowClass: {
       type: [String, Function],
       default: ''
@@ -3991,7 +4002,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   computed: {
     version: function version() {
-      return "2.0.0-beta.4";
+      return "2.0.0-beta.5";
     },
     useDetailRow: function useDetailRow() {
       if (!this.dataIsAvailable) return false;
@@ -4141,7 +4152,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$_css = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_extends___default()({}, __WEBPACK_IMPORTED_MODULE_7__VuetableCssSemanticUI_js__["a" /* default */].table, this.css);
     },
     bodyClass: function bodyClass(base, field) {
-      return [base, field.dataClass];
+      return [base, this.$_css.tableCellClass, field.dataClass];
     },
     normalizeFields: function normalizeFields() {
       var _this2 = this;
@@ -4239,6 +4250,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return field.title;
     },
     renderNormalField: function renderNormalField(field, item) {
+      console.log(field, item);
       return this.hasFormatter(field) ? this.callFormatter(field, item) : this.getObjectValue(item, field.name, '');
     },
     isFieldComponent: function isFieldComponent(fieldName) {
@@ -5204,7 +5216,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return name.replace(this.vuetable.fieldPrefix, '');
     },
     headerClass: function headerClass(base, field) {
-      return [base + '-' + this.toSnakeCase(field.name), field.titleClass || '', this.sortClass(field), { 'sortable': this.vuetable.isSortable(field) }];
+      return [this.css.tableHeaderCellClass, base + '-' + this.toSnakeCase(field.name), field.titleClass || '', this.sortClass(field), { 'sortable': this.vuetable.isSortable(field) }];
     },
     toSnakeCase: function toSnakeCase(str) {
       return typeof str === 'string' && str.replace(/([A-Z])/g, function (chr) {
@@ -5259,10 +5271,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (title.length > 0 && this.isInCurrentSortGroup(field) || this.hasSortableIcon(field)) {
         var style = 'opacity:' + this.sortIconOpacity(field) + ';position:relative;float:right';
         var iconTag = this.vuetable.showSortIcons ? this.renderIconTag(['sort-icon', this.sortIcon(field)], 'style="' + style + '"') : '';
-        return title + ' ' + iconTag;
+        title = title + ' ' + iconTag;
       }
 
-      return title;
+      return typeof this.$parent.renderTitle === 'function' ? this.$parent.renderTitle(title) : title;
     },
     getTitle: function getTitle(field) {
       if (typeof field.title === 'function') return field.title();
@@ -6600,7 +6612,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "D:\\www\\projects\\vuetable-2\\src\\components\\VuetableColGroup.vue"
+Component.options.__file = "/Users/bartversluijs/Documents/VeDicium/Projecten/vuetable-2/src/components/VuetableColGroup.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] VuetableColGroup.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -6744,7 +6756,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "is-header": true
     }
-  }), _vm._v(" "), _c('thead', [_vm._t("tableHeader", [_vm._l((_vm.headerRows), function(header, headerIndex) {
+  }), _vm._v(" "), _c('thead', {
+    class: [_vm.$_css.tableHeaderClass]
+  }, [_vm._t("tableHeader", [_vm._l((_vm.headerRows), function(header, headerIndex) {
     return [_c(header, {
       key: headerIndex,
       tag: "component",
@@ -6755,16 +6769,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], {
     fields: _vm.tableFields
   })], 2)], 1)]) : _vm._e(), _vm._v(" "), _c('div', {
-    staticClass: "vuetable-body-wrapper",
-    class: {
+    class: ['vuetable-body-wrapper', _vm.$_css.tableBodyWrapper, {
       'fixed-header': _vm.isFixedHeader
-    },
+    }],
     style: ({
       height: _vm.tableHeight
     })
   }, [_c('table', {
-    class: ['vuetable', _vm.isFixedHeader ? 'fixed-header' : '', _vm.$_css.tableClass, _vm.$_css.tableBodyClass]
-  }, [_c('vuetable-col-group'), _vm._v(" "), (!_vm.isFixedHeader) ? _c('thead', [_vm._t("tableHeader", [_vm._l((_vm.headerRows), function(header, headerIndex) {
+    class: ['vuetable', _vm.isFixedHeader ? 'fixed-header' : '', _vm.$_css.tableClass]
+  }, [_c('vuetable-col-group'), _vm._v(" "), (!_vm.isFixedHeader) ? _c('thead', {
+    class: [_vm.$_css.tableHeaderClass]
+  }, [_vm._t("tableHeader", [_vm._l((_vm.headerRows), function(header, headerIndex) {
     return [_c(header, {
       key: headerIndex,
       tag: "component",
@@ -6777,7 +6792,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })], 2) : _vm._e(), _vm._v(" "), _c('tfoot', [_vm._t("tableFooter", null, {
     fields: _vm.tableFields
   })], 2), _vm._v(" "), _c('tbody', {
-    staticClass: "vuetable-body"
+    class: [_vm.$_css.tableBodyClass]
   }, [_vm._l((_vm.tableData), function(item, itemIndex) {
     return [_c('tr', {
       key: itemIndex,
@@ -7053,7 +7068,9 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_vm._l((_vm.vuetable.tableFields), function(field, fieldIndex) {
+  return _c('tr', {
+    class: [_vm.css.tableHeaderRowClass]
+  }, [_vm._l((_vm.vuetable.tableFields), function(field, fieldIndex) {
     return [(field.visible) ? [(_vm.vuetable.isFieldComponent(field.name)) ? [_c(field.name, {
       key: fieldIndex,
       tag: "component",
@@ -7166,7 +7183,7 @@ var content = __webpack_require__(141);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(21)("6f33786d", content, false);
+var update = __webpack_require__(21)("9c7810fe", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -7192,7 +7209,7 @@ var content = __webpack_require__(142);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(21)("7f3cb8dd", content, false);
+var update = __webpack_require__(21)("53e9288b", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -7218,7 +7235,7 @@ var content = __webpack_require__(143);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(21)("0146e62c", content, false);
+var update = __webpack_require__(21)("80b0882e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -7244,7 +7261,7 @@ var content = __webpack_require__(144);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(21)("564f3514", content, false);
+var update = __webpack_require__(21)("63364b20", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
