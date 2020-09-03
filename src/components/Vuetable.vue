@@ -237,6 +237,10 @@ export default {
       type: String,
       default: 'alt'
     },
+    renderTitle: {
+      type: Function,
+      default: null,
+    },
     rowClass: {
       type: [String, Function],
       default: ''
