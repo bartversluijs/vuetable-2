@@ -1,5 +1,5 @@
 /**
- * vuetable-2 v2.0.0-beta.5
+ * vuetable-2 v2.0.0-beta.6
  * https://github.com/ratiw/vuetable-2
  * Released under the MIT License.
  */
@@ -3906,6 +3906,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       type: Function,
       default: null
     },
+    renderField: {
+      type: Function,
+      default: null
+    },
     rowClass: {
       type: [String, Function],
       default: ''
@@ -4002,7 +4006,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   computed: {
     version: function version() {
-      return "2.0.0-beta.5";
+      return "2.0.0-beta.6";
     },
     useDetailRow: function useDetailRow() {
       if (!this.dataIsAvailable) return false;
@@ -4250,8 +4254,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return field.title;
     },
     renderNormalField: function renderNormalField(field, item) {
-      console.log(field, item);
-      return this.hasFormatter(field) ? this.callFormatter(field, item) : this.getObjectValue(item, field.name, '');
+      var returnValue = this.hasFormatter(field) ? this.callFormatter(field, item) : this.getObjectValue(item, field.name, '');
+
+      return typeof this.renderField === 'function' ? this.renderField(returnValue, field, item) : returnValue;
     },
     isFieldComponent: function isFieldComponent(fieldName) {
       if (fieldName instanceof Object) {
@@ -6883,8 +6888,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "options": _vm.detailRowOptions
       }
     })], 1)]) : _vm._e()])] : _vm._e()]
-  }), _vm._v(" "), (_vm.displayEmptyDataRow) ? [_c('tr', [_c('td', {
+  }), _vm._v(" "), (_vm.displayEmptyDataRow) ? [_c('tr', {
+    class: [_vm.$_css.tableRowClass]
+  }, [_c('td', {
     staticClass: "vuetable-empty-result",
+    class: [_vm.$_css.tableCellClass],
     attrs: {
       "colspan": _vm.countVisibleFields
     },
