@@ -140,10 +140,10 @@ export default {
       if (title.length > 0 && this.isInCurrentSortGroup(field) || this.hasSortableIcon(field)) {
         let style = `opacity:${this.sortIconOpacity(field)};position:relative;float:right`
         let iconTag = this.vuetable.showSortIcons ? this.renderIconTag(['sort-icon', this.sortIcon(field)], `style="${style}"`) : ''
-        return title + ' ' + iconTag
+        title = title + ' ' + iconTag;
       }
 
-      return title
+      return (typeof this.$parent.renderTitle === 'function' ? this.$parent.renderTitle(title) : title);
     },
 
     getTitle (field) {
