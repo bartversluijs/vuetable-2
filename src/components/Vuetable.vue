@@ -241,6 +241,10 @@ export default {
       type: Function,
       default: null,
     },
+    renderField: {
+      type: Function,
+      default: null,
+    },
     rowClass: {
       type: [String, Function],
       default: ''
@@ -599,9 +603,11 @@ export default {
     },
 
     renderNormalField (field, item) {
-      return this.hasFormatter(field)
+      const returnValue = this.hasFormatter(field)
         ? this.callFormatter(field, item)
-        : this.getObjectValue(item, field.name, '')
+        : this.getObjectValue(item, field.name, '');
+
+      return (typeof this.renderField === 'function' ? this.renderField(returnValue, field, item) : returnValue);
     },
 
     isFieldComponent (fieldName) {
