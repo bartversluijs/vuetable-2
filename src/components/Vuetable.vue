@@ -92,11 +92,13 @@
           </template>
         </template>
         <template v-if="displayEmptyDataRow">
-          <tr>
-            <td :colspan="countVisibleFields"
+          <tr :class="[$_css.tableRowClass]">
+            <td
+              :colspan="countVisibleFields"
               class="vuetable-empty-result"
+              :class="[$_css.tableCellClass]"
               v-html="noDataTemplate"
-            ></td>
+            />
           </tr>
         </template>
         <template v-if="lessThanMinRows">
