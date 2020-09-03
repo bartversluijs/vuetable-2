@@ -15,8 +15,8 @@
       </table>
     </div>
 
-    <div class="vuetable-body-wrapper" :class="{'fixed-header' : isFixedHeader}" :style="{height: tableHeight}">
-      <table :class="['vuetable', isFixedHeader ? 'fixed-header' : '', $_css.tableClass, $_css.tableBodyClass]">
+    <div :class="['vuetable-body-wrapper', $_css.tableBodyWrapper, { 'fixed-header': isFixedHeader }]" :style="{height: tableHeight}">
+      <table :class="['vuetable', isFixedHeader ? 'fixed-header' : '', $_css.tableClass]">
       <vuetable-col-group/>
       <thead v-if="!isFixedHeader" :class="[$_css.tableHeaderClass]">
       <slot name="tableHeader" :fields="tableFields">
@@ -491,7 +491,7 @@ export default {
     },
 
     bodyClass (base, field) {
-      return [ base, field.dataClass ]
+      return [ base, this.$_css.tableCellClass, field.dataClass ]
     },
 
     normalizeFields () {
