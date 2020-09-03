@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr :class="[css.tableHeaderRowClass]">
     <template v-for="(field, fieldIndex) in vuetable.tableFields">
       <template v-if="field.visible">
         <template v-if="vuetable.isFieldComponent(field.name)">
@@ -45,7 +45,7 @@ import VuetableColGutter from './VuetableColGutter'
 
 export default {
   components: {
-    'vuetable-field-checkbox': VuetableFieldCheckbox, 
+    'vuetable-field-checkbox': VuetableFieldCheckbox,
     'vuetable-field-handle'  : VuetableFieldHandle,
     'vuetable-field-sequence': VuetableFieldSequence,
     VuetableColGutter
@@ -72,6 +72,7 @@ export default {
 
     headerClass (base, field) {
       return [
+        this.css.tableHeaderCellClass,
         base + '-' + this.toSnakeCase(field.name),
         field.titleClass || '',
         this.sortClass(field),
