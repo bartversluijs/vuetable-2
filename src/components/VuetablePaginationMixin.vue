@@ -29,9 +29,7 @@ export default {
   },
   computed: {
     totalPage () {
-      return this.tablePagination === null
-        ? 0
-        : this.tablePagination.last_page - this.firstPage + 1
+      return this.tablePagination === null ? 0 : (this.tablePagination.last_page || 0) - this.firstPage + 1
     },
     lastPage () {
       return this.tablePagination === null
@@ -49,7 +47,7 @@ export default {
         : this.tablePagination.current_page === this.lastPage
     },
     notEnoughPages () {
-      return this.totalPage < (this.onEachSide * 2) + 4
+      return Number.isFinite(this.totalPage) && (this.totalPage < (this.onEachSide * 2) + 4);
     },
     windowSize () {
       return this.onEachSide * 2 +1;
