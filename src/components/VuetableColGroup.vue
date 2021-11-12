@@ -37,6 +37,12 @@ export default {
       let fieldName = typeof(field.name) === "object" && field.name !== null
         ? field.name.name
         : field.name
+
+      // When it's a function, use the index instead
+      if (typeof(field.name) === 'function') {
+        fieldName = `index-${fieldIndex}`;
+      }
+
       fieldName = fieldName.replace(this.fieldPrefix, "")
 
       return ['vuetable-col-'+fieldName, field.titleClass]
