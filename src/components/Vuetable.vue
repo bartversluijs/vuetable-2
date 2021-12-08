@@ -33,7 +33,7 @@
       <tbody v-cloak :class="[$_css.tableBodyClass]">
         <template v-for="(item, itemIndex) in tableData">
           <tr :item-index="itemIndex"
-            :key="itemIndex"
+            :key="getItemKey(itemIndex, item)"
             :class="onRowClass(item, itemIndex)"
             @click="onRowClicked(item, itemIndex, $event)"
             @dblclick="onRowDoubleClicked(item, itemIndex, $event)"
@@ -43,7 +43,7 @@
               <template v-if="field.visible">
                 <template v-if="isFieldComponent(field.name)">
                   <component :is="field.name"
-                    :key="fieldIndex"
+                    :key="getFieldKey(fieldIndex, item)"
                     :row-data="item" :row-index="itemIndex" :row-field="field"
                     :vuetable="vuetable"
                     :class="bodyClass('vuetable-component', field)"
@@ -53,7 +53,7 @@
                 </template>
                 <template v-else-if="isFieldSlot(field.name)">
                   <td :class="bodyClass('vuetable-slot', field)"
-                    :key="fieldIndex"
+                    :key="getFieldKey(fieldIndex, item)"
                     :style="{width: field.width}"
                   >
                     <slot :name="field.name"
@@ -63,7 +63,7 @@
                 </template>
                 <template v-else>
                   <td :class="bodyClass('vuetable-td-'+field.name, field)"
-                    :key="fieldIndex"
+                    :key="getFieldKey(fieldIndex, item)"
                     :style="{width: field.width}"
                     v-html="renderNormalField(field, item)"
                     @click="onCellClicked(item, itemIndex, field, $event)"
@@ -75,8 +75,8 @@
             </template>
           </tr>
           <template v-if="useDetailRow">
-            <transition :name="detailRowTransition" :key="itemIndex">
-              <tr v-if="isVisibleDetailRow(item[trackBy])"
+            <transition :name="detailRowTransition" :key="getItemKey(itemIndex, item)">
+              <tr v-if="isVisibleDetailRow(getRowIdentifier(item))"
                 @click="onDetailRowClick(item, itemIndex, $event)"
                 :class="onDetailRowClass(item, itemIndex)"
               >
@@ -116,6 +116,7 @@
 
 <script>
 import axios from 'axios'
+import objectPath from 'object-path';
 import VuetableRowHeader from './VuetableRowHeader'
 import VuetableColGroup from './VuetableColGroup'
 import CssSemanticUI from './VuetableCssSemanticUI.js'
@@ -353,7 +354,7 @@ export default {
       return this.tableData.length > 0
     },
     hasRowIdentifier () {
-      return this.tableData && typeof(this.tableData[0][this.trackBy]) !== 'undefined'
+      return this.tableData && this.getRowIdentifier(this.tableData[0]) !== undefined;
     },
     countVisibleFields () {
       return this.tableFields.filter( (field) => {
@@ -1099,37 +1100,52 @@ export default {
     },
 
     onCheckboxToggled (isChecked, fieldName, dataItem) {
-      let idColumn = this.trackBy
+      const rowId = this.getRowIdentifier(dataItem);
 
-      if (dataItem[idColumn] === undefined) {
+      if (rowId === undefined) {
         this.warn('checkbox field: The "'+this.trackBy+'" field does not exist! Make sure the field you specify in "track-by" prop does exist.')
         return
       }
 
-      let key = dataItem[idColumn]
       if (isChecked) {
-        this.selectId(key)
+        this.selectId(rowId)
       } else {
-        this.unselectId(key)
+        this.unselectId(rowId)
       }
 
       this.fireEvent('checkbox-toggled', isChecked, fieldName)
     },
 
     onCheckboxToggledAll (isChecked) {
-      let idColumn = this.trackBy
-
       if (isChecked) {
-        this.tableData.forEach( (dataItem) => {
-          this.selectId(dataItem[idColumn])
+        this.tableData.forEach((dataItem) => {
+          this.selectId(this.getRowIdentifier(dataItem))
         })
       } else {
-        this.tableData.forEach( (dataItem) => {
-          this.unselectId(dataItem[idColumn])
+        this.tableData.forEach((dataItem) => {
+          this.unselectId(this.getRowIdentifier(dataItem))
         })
       }
 
       this.fireEvent('checkbox-toggled-all', isChecked)
+    },
+
+    getRowIdentifier(item) {
+      return objectPath.get(item, this.trackBy);
+    },
+    getItemKey(itemIndex, item) {
+      if (this.getRowIdentifier(item) !== undefined) {
+        return `item-id-${this.getRowIdentifier(item)}`;
+      }
+
+      return `item-${itemIndex}`;
+    },
+    getFieldKey(fieldIndex, item) {
+      if (this.getRowIdentifier(item) !== undefined) {
+        return `field-id-${this.getRowIdentifier(item)}`;
+      }
+
+      return `field-${fieldIndex}`;
     },
 
     /*
