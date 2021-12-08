@@ -491,6 +491,6 @@ export interface VuetableConstructor<T = VuetableDataRow> extends VueConstructor
   computed: VuetableComputed<T>;
 }
 
-export type VuetableInstance = InstanceType<ExtendedVue<Vue, VuetableProps<T>, VuetableData<T>, VuetableMethods<T>, VuetableComputed<T>>>;
+export type VuetableInstance<T = VuetableDataRow> = InstanceType<ExtendedVue<Vue, VuetableData<T>, VuetableMethods<T>, VuetableComputed<T>, VuetableProps<T>>>;
 
-export const Vuetable = VuetableConstructor;
+export const Vuetable: VuetableConstructor;

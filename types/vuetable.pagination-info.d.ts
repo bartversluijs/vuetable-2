@@ -68,6 +68,6 @@ export interface VuetablePaginationInfoMixinConstructor extends VueConstructor {
   methods: VuetablePaginationInfoMixinMethods;
 }
 
-export type VuetablePaginationInfoMixinInstance = InstanceType<ExtendedVue<Vue, VuetablePaginationInfoMixinProps, VuetablePaginationInfoMixinData, VuetablePaginationInfoMixinComputed, VuetablePaginationInfoMixinMethods>>;
+export type VuetablePaginationInfoMixinInstance = InstanceType<ExtendedVue<Vue, VuetablePaginationInfoMixinData, VuetablePaginationInfoMixinMethods, VuetablePaginationInfoMixinComputed, VuetablePaginationInfoMixinProps>>;
 
 export const VuetablePaginationInfoMixin: VuetablePaginationInfoMixinConstructor;

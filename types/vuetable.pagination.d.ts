@@ -1,4 +1,4 @@
-import { VueConstructor } from 'vue';
+import Vue, { VueConstructor } from 'vue';
 import { ExtendedVue } from 'vue/types/vue';
 
 export type VuetablePagination = Object;
@@ -119,6 +119,6 @@ export interface VuetablePaginationMixinConstructor extends VueConstructor {
   methods: VuetablePaginationMixinMethods;
 }
 
-export type VuetablePaginationMixinInstance = InstanceType<ExtendedVue<Vue, VuetablePaginationMixinProps, VuetablePaginationMixinData, VuetablePaginationMixinComputed, VuetablePaginationMixinMethods>>;
+export type VuetablePaginationMixinInstance = InstanceType<ExtendedVue<Vue, VuetablePaginationMixinData, VuetablePaginationMixinMethods, VuetablePaginationMixinComputed, VuetablePaginationMixinProps>>;
 
 export const VuetablePaginationMixin: VuetablePaginationMixinConstructor;
