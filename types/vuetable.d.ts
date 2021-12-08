@@ -274,7 +274,7 @@ export interface VuetableProps<T = VuetableData> {
    * @see https://www.vuetable.com/api/vuetable/properties.html#track-by
    * @default id
    */
-  trackBy: RowIdentifier;
+  trackBy: string | ((item: T) => string);
 
   /**
    * A function that allows the user to programmatically transform the receiving data into the one can Vuetable can works with.

@@ -271,7 +271,7 @@ export default {
       }
     },
     trackBy: {
-      type: String,
+      type: [String, Function],
       default: 'id'
     },
     css: {
@@ -1101,9 +1101,8 @@ export default {
 
     onCheckboxToggled (isChecked, fieldName, dataItem) {
       const rowId = this.getRowIdentifier(dataItem);
-
       if (rowId === undefined) {
-        this.warn('checkbox field: The "'+this.trackBy+'" field does not exist! Make sure the field you specify in "track-by" prop does exist.')
+        this.warn(`checkbox field: The row identifier is undefined. Make sure the field you specify in "track-by" prop does exist.`)
         return
       }
 
@@ -1131,6 +1130,12 @@ export default {
     },
 
     getRowIdentifier(item) {
+      // Get row identifier by executing 'trackBy' function
+      if (typeof this.trackBy === 'function') {
+        return this.trackBy(item);
+      }
+
+      // If it's not a function, get the path from item
       const identifier = objectPath.get(item, this.trackBy);
       if (typeof item === 'object') {
         return JSON.stringify(identifier);
