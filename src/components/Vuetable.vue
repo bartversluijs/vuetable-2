@@ -1146,7 +1146,7 @@ export default {
     },
     getFieldKey(fieldIndex, item) {
       if (this.getRowIdentifier(item) !== undefined) {
-        return `field-id-${this.getRowIdentifier(item)}`;
+        return `field-${fieldIndex}-id-${this.getRowIdentifier(item)}`;
       }
 
       return `field-${fieldIndex}`;
