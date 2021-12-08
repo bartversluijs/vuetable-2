@@ -299,7 +299,7 @@ export interface VuetableData<T = VuetableDataRow> {
    * In `api-mode`, this stores the data that returned from the server after the sucessful AJAX request. Otherwise, it stores the data assigned to via `data` prop or `setData` method. Vuetable always use `tableData` for table rendering.
    * @see https://www.vuetable.com/api/vuetable/data.html#tabledata
    */
-  tableData: T;
+  tableData: Array<T>;
 
   /**
    * If the data returned from the server contains pagination information specified in the `pagination-path`, this is where it gets stored.
