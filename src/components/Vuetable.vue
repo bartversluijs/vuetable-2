@@ -1131,7 +1131,11 @@ export default {
     },
 
     getRowIdentifier(item) {
-      return objectPath.get(item, this.trackBy);
+      const identifier = objectPath.get(item, this.trackBy);
+      if (typeof item === 'object') {
+        return JSON.stringify(identifier);
+      }
+      return identifier;
     },
     getItemKey(itemIndex, item) {
       if (this.getRowIdentifier(item) !== undefined) {
