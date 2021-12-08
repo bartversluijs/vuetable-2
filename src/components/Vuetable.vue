@@ -75,7 +75,7 @@
             </template>
           </tr>
           <template v-if="useDetailRow">
-            <transition :name="detailRowTransition" :key="getItemKey(itemIndex, item)">
+            <transition :name="detailRowTransition" :key="`${getItemKey(itemIndex, item)}:details`">
               <tr v-if="isVisibleDetailRow(getRowIdentifier(item))"
                 @click="onDetailRowClick(item, itemIndex, $event)"
                 :class="onDetailRowClass(item, itemIndex)"
