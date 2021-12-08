@@ -8,7 +8,7 @@
   "author": "Rati Wannapanop <rati.wannapanop@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ratiw/vuetable-2.git"
+    "url": "git+https://github.com/bartversluijs/vuetable-2.git"
   },
   "private": false,
   "keywords": [
