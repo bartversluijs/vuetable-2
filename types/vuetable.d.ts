@@ -1,6 +1,7 @@
 import { Method as HttpMethod } from 'axios';
 import Vue, { VueConstructor } from 'vue';
 import { ExtendedVue } from 'vue/types/vue';
+import { VuetableHttpFetch, VuetableHttpOptions } from './vuetable.http';
 
 export type VuetableDataRow = any;
 
@@ -134,9 +135,7 @@ export interface VuetableProps<T = VuetableData> {
    * @see https://www.vuetable.com/api/vuetable/properties.html#http-fetch
    * @default axios
    */
-  httpFetch?: (apiUrl: string, httpOptions: Object) => {
-    data: AxiosResponse['data'];
-  };
+  httpFetch?: VuetableHttpFetch<T>;
 
   /**
    * HTTP method that will be used to perform the request.
@@ -150,7 +149,7 @@ export interface VuetableProps<T = VuetableData> {
    * @see https://www.vuetable.com/api/vuetable/properties.html#http-options
    * @default {}
    */
-  httpOptions: Object;
+  httpOptions: VuetableHttpOptions;
 
   /**
    * The initial page number of data to be requested the first time Vuetable is loaded.
