@@ -28,4 +28,4 @@ export interface VuetableResponseLegacy<T> extends DatatableResponsePagination {
   data: Array<T>;
 }
 
-export type VuetableHttpFetch<T> = (apiUrl: string, httpOptions: VuetableHttpOptions) => VuetableResponse<T> | VuetableResponseLegacy<T>;
+export type VuetableHttpFetch<T> = (apiUrl: string, httpOptions: VuetableHttpOptions) => Promise<VuetableResponse<T> | VuetableResponseLegacy<T>> | VuetableResponse<T> | VuetableResponseLegacy<T>;
