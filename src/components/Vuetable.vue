@@ -144,10 +144,7 @@ export default {
     },
     httpMethod: {
       type: String,
-      default: 'get',
-      validator: (value) => {
-        return ['get', 'post'].indexOf(value) > -1
-      }
+      default: 'GET',
     },
     reactiveApiUrl: {
       type: Boolean,
@@ -655,17 +652,17 @@ export default {
 
     fetch (apiUrl, httpOptions) {
       if (this.httpFetch) {
-        return this.httpFetch(apiUrl, httpOptions)
+        return this.httpFetch(apiUrl, {
+          method: this.httpMethod,
+          ...(httpOptions || {}),
+        });
       }
 
-      if (this.httpMethod === 'get') {
-        return axios.get(apiUrl, httpOptions)
-      }
-      else { // Is a POST request
-        let params = httpOptions.params
-        delete httpOptions.params
-        return axios.post(apiUrl, params, httpOptions)
-      }
+      return axios.request({
+        url: apiUrl,
+        method: this.httpMethod,
+        ...(httpOptions || {}),
+      });
     },
 
     loadSuccess (response) {

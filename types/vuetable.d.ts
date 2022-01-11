@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { Method as HttpMethod } from 'axios';
 import Vue, { VueConstructor } from 'vue';
 import { ExtendedVue } from 'vue/types/vue';
 
@@ -139,11 +139,11 @@ export interface VuetableProps<T = VuetableData> {
   };
 
   /**
-   * Only support `get` or `post` method. Please note that it must be the lowercase string.
+   * HTTP method that will be used to perform the request.
    * @see https://www.vuetable.com/api/vuetable/properties.html#http-method
-   * @default get
+   * @default GET
    */
-  httpMethod: 'get' | 'post';
+  httpMethod: HttpMethod;
 
   /**
    * Allow passing additional options to the server during AJAX call. Internally, Vuetable uses `axios` to handle AJAX request.
