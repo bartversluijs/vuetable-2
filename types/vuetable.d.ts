@@ -7,6 +7,14 @@ export type VuetableDataRow = any;
 
 export type RowIdentifier = any;
 
+export type SortDirection = 'asc' | 'desc';
+
+export interface SortOrderItem {
+  field: string;
+  sortField: string | undefined;
+  direction: SortDirection;
+}
+
 export interface VuetableField<T = VuetableDataRow> {
   name: string | Vue;
   sortField?: string;
@@ -231,7 +239,7 @@ export interface VuetableProps<T = VuetableData> {
    * @see https://www.vuetable.com/api/vuetable/properties.html#sort-order
    * @default []
    */
-  sortOrder: Array<string>;
+  sortOrder: Array<SortOrderItem>;
 
   /**
    * If assigned, this function will be called by Vuetable passing the current sort orders array as a parameter.
@@ -239,7 +247,7 @@ export interface VuetableProps<T = VuetableData> {
    * The function must return a string to be included in the query string of API request
    * @see https://www.vuetable.com/api/vuetable/properties.html#sort-params
    */
-  sortParams?: (sortOrder: Array<string>) => string;
+  sortParams?: (sortOrder: Array<SortOrderItem>) => string;
 
   /**
    * Text to be displayed when there are no records in the table. It also support HTML.
